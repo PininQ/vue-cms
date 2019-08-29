@@ -38,7 +38,13 @@
 <style lang="scss" scoped>
 .app-container {
   padding-top: 40px;
+	padding-bottom: 60px;
 	overflow-x: hidden;
+}
+
+.mui-bar {
+	box-shadow: none;
+	border-top: 1px solid #e3e3e5;
 }
 
 .v-enter {

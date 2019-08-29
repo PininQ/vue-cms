@@ -18,10 +18,10 @@
     <!-- 六宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/newslist">
           <img src="../../images/menu1.png" alt="">
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
@@ -73,7 +73,7 @@ export default {
   methods: {
     getLunbotu() {
       // 获取轮播图数据的方法
-      this.$http.get('http://120.77.181.41:3000/api/getcover').then(res => {
+      this.$http.get('api/getcover').then(res => {
         // console.log(res.body);
         if(res.body.status === 1) {
           this.lunbotuList = res.body.imgs
