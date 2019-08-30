@@ -73,7 +73,6 @@ data() {
     margin-top: 7px;
     box-shadow: 0 0 8px #ccc;
     margin: 4px 0;
-    padding: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -85,10 +84,11 @@ data() {
       img {
         width: 100%;
         min-height: 170px;
-        border-radius: 3px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
       }
       .intro {
-        // max-height: 40px;
+        max-height: 63px;
         color: #000;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -101,7 +101,8 @@ data() {
     .info {
       background-color: #eee;
       overflow: hidden;
-      border-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
       p {
         margin: 3px;
       }
