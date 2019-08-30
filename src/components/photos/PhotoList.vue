@@ -19,11 +19,11 @@
 
     <!-- 图片列表区域 -->
     <ul class="photo-list">
-      <li v-for="item in list" :key="item">
+      <router-link v-for="item in list" :key="item._id" :to="'/home/photoinfo/' + item.phoId" tag="li">
         <!-- 注意： v-lazy 要指定图片的地址 -->
         <img v-lazy="item.phos[0]" />
         <div class="info">{{ item.intro }}</div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -71,7 +71,6 @@ export default {
           // this.list = [].concat.apply([], res.body.phos.map(item => item.phos));
           // this.list = [].concat(...res.body.phos.map(item => item.phos))
           this.list = res.body.phos
-          console.log(this.list);
         }
       })
     }
@@ -102,7 +101,7 @@ export default {
     vertical-align: middle;
     border-radius: 10px;
   }
-  img[lazy='loading'] {
+  img[lazy="loading"] {
     width: 40px;
     height: 300px;
     margin: auto;

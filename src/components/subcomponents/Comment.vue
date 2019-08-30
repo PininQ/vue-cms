@@ -1,7 +1,6 @@
 <template>
   <div class="cmt-container">
     <h3>发表评论</h3>
-    <hr />
     <textarea placeholder="请输入要BB的内容（最多吐槽120字）" maxlength="120" v-model="msg"></textarea>
 
     <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
@@ -35,7 +34,6 @@ export default {
     getComments() { // 获取评论
       this.$http.get('api/getnewscom?newsId=' + this.id + '&pageIdx=' + this.pageIndex)
       .then(res => {
-        console.log(res);
         if(res.body.status === 1) {
           // this.comments = res.body.comments
           // 每当获取新评论数据的时候，不要把老数据清空覆盖，而是应该以老数据拼接上新数据
@@ -84,6 +82,8 @@ export default {
 .cmt-container {
   h3 {
     font-style: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #efefef;
   }
   textarea {
     font-size: 14px;
