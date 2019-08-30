@@ -38,7 +38,7 @@
 <style lang="scss" scoped>
 .app-container {
   padding-top: 40px;
-	padding-bottom: 60px;
+	padding-bottom: 50px;
 	// 当有组件切换动效的时候，一瞬间，页面的宽度会变成 正常宽度的 2 倍，此时，需要隐藏超出屏幕宽度的区域
 	overflow-x: hidden;
 }
