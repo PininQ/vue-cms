@@ -7,10 +7,24 @@
         class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
       >
         <div class="mui-scroll">
-          <a :class="['mui-control-item', index === 0 ? 'mui-active' : '']" v-for="(item, index) in cates" :key="index">{{ item }}</a>
+          <a
+            :class="['mui-control-item', index === 0 ? 'mui-active' : '']"
+            v-for="(item, index) in cates"
+            :key="index"
+            @click="getPhotoListByCateId(item)"
+          >{{ item }}</a>
         </div>
       </div>
     </div>
+
+    <!-- 图片列表区域 -->
+    <ul class="photo-list">
+      <li v-for="item in list" :key="item">
+        <!-- 注意： v-lazy 要指定图片的地址 -->
+        <img v-lazy="item.phos[0]" />
+        <div class="info">{{ item.intro }}</div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -22,10 +36,13 @@ export default {
   data() {
     return {
       cates: [], // 所有分类的列表数组
+      list: [], // 图片列表的数组
     }
   },
   created() {
     this.getAllCategory()
+    // 默认进入页面，就主动请求所有图片列表的数据
+    this.getPhotoListByCateId('')
   },
   mounted() {
     // 当组件中的 DOM 结构被渲染好并放到页面中后，会执行这个 钩子函数
@@ -43,7 +60,18 @@ export default {
           // 手动拼接一个最完整的 分类列表
           res.body.types.unshift('全部')
           this.cates = res.body.types
-          console.log(this.cates);
+        }
+      })
+    },
+    getPhotoListByCateId(type) {
+      // 根据 分类 Id，获取图片列表
+      this.$http.get('api/getpho?type=' + type + '&pageIdx=1').then(res => {
+        if (res.body.status === 1) {
+          // 使用 ES6 的展开运算符，展开二维数组，或者可以使用 concat() 和 apply()
+          // this.list = [].concat.apply([], res.body.phos.map(item => item.phos));
+          // this.list = [].concat(...res.body.phos.map(item => item.phos))
+          this.list = res.body.phos
+          console.log(this.list);
         }
       })
     }
@@ -54,5 +82,43 @@ export default {
 <style lang="scss" scoped>
 * {
   touch-action: pan-y;
+}
+
+.photo-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 0;
+  li {
+    background-color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 9px #999;
+    border-radius: 10px;
+    position: relative;
+  }
+  img {
+    width: 100%;
+    vertical-align: middle;
+    border-radius: 10px;
+  }
+  img[lazy='loading'] {
+    width: 40px;
+    height: 300px;
+    margin: auto;
+  }
+  .info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    font-size: 13px;
+    overflow: hidden;
+    color: #f7f7f7;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 }
 </style>

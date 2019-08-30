@@ -43,6 +43,11 @@
 	overflow-x: hidden;
 }
 
+.mint-header {
+	z-index: 123;
+	box-shadow: 0 2px 4px #ccc;
+}
+
 .mui-bar {
 	box-shadow: none;
 	border-top: 1px solid #e3e3e5;
