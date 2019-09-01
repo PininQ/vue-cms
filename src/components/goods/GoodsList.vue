@@ -75,7 +75,6 @@ data() {
       // 其中：this.$route 是 路由【参数对象】，所有路由中的参数，params query 都属于它
       // 其中：this.$router 是 路由【导航对象】，用它 可以方便的使用 JS 代码实现路由的前进和后退，跳转到新的 URL地址
 
-      console.log(this);
       // 1. 字符串
       // this.$router.push('/home/goodsinfo/' + id)
       // 2. 对象
