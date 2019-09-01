@@ -2,10 +2,17 @@
   <div class="goods-list">
     <div class="goods-item" v-for="item in goodslist" :key="item._id">
       <div class="god-head">
-        <router-link :to="'/home/goodsinfo/'">
+        <!-- 在网页有两种跳转方式： -->
+        <!-- 方式1：使用 a 标签的形式叫做 标签跳转 -->
+        <!-- 方式2：使用 window.location.href 的形式，叫做编程式导航 -->
+        <!-- <router-link :to="'/home/goodsinfo/' + item.godId">
           <img :src="item.phos" :alt="item.name" />
           <div class="intro">{{ item.intro }}</div>
-        </router-link>
+        </router-link> -->
+        <div @click="goDetail(item.godId)">
+          <img :src="item.phos" :alt="item.name" />
+          <div class="intro">{{ item.intro }}</div>
+        </div>
       </div>
       <div class="info">
         <p class="price">
@@ -61,6 +68,20 @@ data() {
       // 点击加载更多的商品
       this.page++;
       this.getGoodsListByPage();
+    },
+    goDetail(id) {
+      // 使用 JS 的形式进行路由导航
+      // 注意：一定要区分 this.$route 和 this。$router 这两个对象
+      // 其中：this.$route 是 路由【参数对象】，所有路由中的参数，params query 都属于它
+      // 其中：this.$router 是 路由【导航对象】，用它 可以方便的使用 JS 代码实现路由的前进和后退，跳转到新的 URL地址
+
+      console.log(this);
+      // 1. 字符串
+      // this.$router.push('/home/goodsinfo/' + id)
+      // 2. 对象
+      // this.$router.push({ path: '/home/goodsinfo/' + id })
+      // 3. 名命的路由
+      this.$router.push({ name: 'goodsinfo', params: { id } })
     }
   }
 }
