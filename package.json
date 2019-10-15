@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --port 8889 --hot",
     "dev2": "webpack-dev-server",
-    "build": "webpack  ./src/main.js ./dist/bundle.js"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
